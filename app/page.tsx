@@ -1,5 +1,9 @@
 const Home = () => {
-  return <h1>Welcome to nextjs</h1>;
+  return (
+    <main>
+      <h2>Home</h2>
+    </main>
+  );
 };
 
 export default Home;
