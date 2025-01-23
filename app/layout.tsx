@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import React from "react";
+import dbConnect from "@/lib/mongoose";
 
 import ThemeProvider from "@/context/Theme";
 
@@ -15,7 +16,7 @@ const inter = localFont({
   weight: "100 200 300 400 500 600 700 800 900",
 });
 
-console.log(inter);
+dbConnect();
 
 const spaceGrotesk = localFont({
   src: "./fonts/SpaceGroteskVF.ttf",
