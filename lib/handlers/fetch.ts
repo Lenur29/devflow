@@ -23,12 +23,12 @@ export async function fetchHandler<T>(
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
 
-  const headers = {
+  const defaultHeaders: HeadersInit = {
     "Content-Type": "application/json",
     Accept: "application/json",
-    ...customHeaders,
   };
 
+  const headers: HeadersInit = { ...defaultHeaders, ...customHeaders };
   const config: RequestInit = {
     ...restOptions,
     headers,
@@ -38,13 +38,15 @@ export async function fetchHandler<T>(
   try {
     const response = await fetch(url, config);
 
+    clearTimeout(id);
+
     if (!response.ok) {
       throw new RequestError(response.status, `HTTP error: ${response.status}`);
     }
 
     return await response.json();
   } catch (err) {
-    const error = isError(err) ? err : new Error(`Unknown error: ${JSON.stringify(err)}`);
+    const error = isError(err) ? err : new Error("Unknown error");
 
     if (error.name === "AbortError") {
       logger.warn(`Request to ${url} timed out`);
@@ -53,7 +55,5 @@ export async function fetchHandler<T>(
     }
 
     return handleError(error) as ActionResponse<T>;
-  } finally {
-    clearTimeout(id);
   }
 }
