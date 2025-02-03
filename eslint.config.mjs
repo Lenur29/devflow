@@ -56,7 +56,7 @@ const config = [
           },
         },
       ],
-      "comma-dangle": "es5",
+      "comma-dangle": ["error", "always-multiline"],
     },
   },
   {
