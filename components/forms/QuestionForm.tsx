@@ -26,9 +26,11 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import EditorSkeleton from "../editor/EditorSkeleton";
 
 const Editor = dynamic(() => import("@/components/editor"), {
   ssr: false,
+  loading: () => <EditorSkeleton />,
 });
 
 interface Params {
@@ -54,7 +56,6 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
     e: React.KeyboardEvent<HTMLInputElement>,
     field: { value: string[] }
   ) => {
-    console.log(field, e);
     if (e.key === "Enter") {
       e.preventDefault();
       const tagInput = e.currentTarget.value.trim();
@@ -106,7 +107,8 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
             description: "Question updated successfully",
           });
 
-          if (result.data) router.push(ROUTES.QUESTION(result.data._id as string));
+          if (result.data)
+            router.push(ROUTES.QUESTION(result.data._id as string));
         } else {
           toast({
             title: `Error ${result.status}`,

@@ -40,8 +40,6 @@ const RootLayout = async ({
 }>) => {
   const session = await auth();
 
-  console.log(session);
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
