@@ -27,7 +27,7 @@ const spaceGrotesk = localFont({
 export const metadata: Metadata = {
   title: "Dev Overflow",
   description:
-    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+    "A collaborative platform where developers can ask questions, share knowledge, and find solutions to programming challenges. Connect with a global community and explore topics like web development, mobile apps, algorithms, data structures, and more.",
   icons: {
     icon: "/images/site-logo.svg",
   },
